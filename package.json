@@ -1,0 +1,24 @@
+{
+  "name": "locadex",
+  "version": "1.0.0",
+  "description": "computer vision web application",
+  "main": "locadex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-t-smith/locadex.git"
+  },
+  "author": "Matt Smitherman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-t-smith/locadex/issues"
+  },
+  "homepage": "https://github.com/m-t-smith/locadex#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^1.2.10",
+    "@tensorflow/tfjs-node": "^1.2.10",
+    "express": "^4.17.1"
+  }
+}
