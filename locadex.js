@@ -15,6 +15,8 @@ locadex.use(express.static('public'));
 
 //locadex.use('/resources', express.static(path.join(__dirname, '/resources')));
 
+locadex.use('/test', express.static(path.join(__dirname, '/test')));
+
 locadex.get('/', function(req, res) {
 
 res.end('Hello World\n')
