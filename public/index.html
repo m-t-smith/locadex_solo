@@ -22,6 +22,17 @@
   </head>
   <body>
   
-  <button onclick="log()">Recognize</button>
+  <form name="buttonForm">
+  <p><button name = "clickable" value = "train"> train model </button></p>
+  <p><button name = "clickable" value = "example"> example </button></p>
+  <p><button name = "clickable" value = "visualization"> visualization</button></p>
+  </form>
+  
+  <canvas id = "myCanvas" width = "25" height = "25">
+  </canvas>
+
+  
+  Result: <output id = "result"> </output>
+  
   </body>
 </html>

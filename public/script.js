@@ -31,21 +31,109 @@ async function showExamples(data) {
   }
 }
 
-async function run() {  
+async function displaySingle(data) {
+  var example = data.nextTestBatch(1);
+  var imageTensor = tf.tidy(() => {
+    //reshape image to 28x28
+    return example.xs
+      .slice([0, 0], [1, example.xs.shape[1]])
+      .reshape([28, 28, 1]);
+  });
+  
+  var canvas = document.getElementById("myCanvas");
+  
+  //canvas.width = 28;
+  //canvas.height = 28;
+  //canvas.style = 'margin: 4px;';
+  
+  await tf.browser.toPixels(imageTensor, canvas);
+  
+  return example;
+  
+  //imageTensor.dispose();
+}
+
+//load data, create and train model
+async function init() {
+  var data = new MnistData();
+  await data.load();
+  
+  var model = getModel();
+  
+  await train(model, data);
+  
+  await console.log("model is trained and saved in local storage");
+  
+}
+//retrieve single example. load saved model, predict and display class of example image
+async function runSingle() {  
+  const data = new MnistData();
+  await data.load();
+ //display single image example and store for prediction
+  var singleImage = await displaySingle(data);
+  //load trained model
+  var model = await tf.loadLayersModel('localstorage://my-model-1');
+  //use model to classify single image example
+  await predictSingle(model, singleImage);
+}
+//load data, train model, and display visualizations and metrics
+async function runVisual() {  
   const data = new MnistData();
   await data.load();
   await showExamples(data);
   
-  const model = getModel();
+  var model = getModel();
   tfvis.show.modelSummary({name: 'Model Architecture'}, model);
   
-  await train(model, data);
+  await trainVisual(model, data);
   
   await showAccuracy(model, data);
   await showConfusion(model, data);
 }
 
-document.addEventListener('DOMContentLoaded', run);
+async function predictSingle(model, data, testDataSize = 1){
+  
+  var IMAGE_WIDTH = 28;
+  var IMAGE_HEIGHT = 28;
+  var testxs = data.xs.reshape([testDataSize, IMAGE_WIDTH, IMAGE_HEIGHT, 1]);
+  //use model to predict class of example data
+  var pred = model.predict(testxs).argMax([-1]);
+  //convert prediction result to string
+  var resultString = pred.toString();
+  //update page output element with prediction result
+  document.getElementById("result").value = resultString;
+  
+}
+
+//initialize array of button elements from html buttonForm
+var buttons = document.forms["buttonForm"].elements["clickable"];
+//iterate through button elements
+for(var button of buttons) {
+ //define behavior of buttons on click events
+ button.onclick = function(form) { 
+  //train model button logic
+  if (this.value == 'train') {
+
+    init();
+    console.log("retrieving data, creating and training model");
+  //example button logic
+  } else if (this.value == 'example') {
+
+    runSingle();
+    console.log("displaying single classification example");
+    //visualization button logic
+    } else {
+
+    runVisual();
+
+    console.log("running visual example");
+
+    }
+//stop form submission so page won't refresh on button click
+    form.preventDefault(); 
+
+  }
+}
 
 function getModel() {
   const model = tf.sequential();
@@ -113,6 +201,42 @@ async function train(model, data) {
   const container = {
     name: 'Model Training', styles: { height: '1000px' }
   };
+  
+  const BATCH_SIZE = 512;
+  const TRAIN_DATA_SIZE = 5500;
+  const TEST_DATA_SIZE = 1000;
+
+  const [trainXs, trainYs] = tf.tidy(() => {
+    const d = data.nextTrainBatch(TRAIN_DATA_SIZE);
+    return [
+      d.xs.reshape([TRAIN_DATA_SIZE, 28, 28, 1]),
+      d.labels
+    ];
+  });
+
+  const [testXs, testYs] = tf.tidy(() => {
+    const d = data.nextTestBatch(TEST_DATA_SIZE);
+    return [
+      d.xs.reshape([TEST_DATA_SIZE, 28, 28, 1]),
+      d.labels
+    ];
+  });
+
+  return model.fit(trainXs, trainYs, {
+    batchSize: BATCH_SIZE,
+    validationData: [testXs, testYs],
+    epochs: 10,
+    shuffle: true
+  });
+  
+  var trainedModel = await model.save('localstorage://my-model-1');
+}
+
+async function trainVisual(model, data) {
+  const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
+  const container = {
+    name: 'Model Training', styles: { height: '1000px' }
+  };
   const fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
   
   const BATCH_SIZE = 512;
@@ -142,6 +266,7 @@ async function train(model, data) {
     shuffle: true,
     callbacks: fitCallbacks
   });
+  
 }
 
 
