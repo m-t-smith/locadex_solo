@@ -1,0 +1,3 @@
+//shell script to generate self-signed key and cert for ssl/https
+
+openssl req -nodes -new -x509 -keyout server.key -out server.cert
