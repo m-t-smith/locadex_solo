@@ -18,23 +18,29 @@
   <!-- Import the main app script file -->
   <script src="script.js" type="module"></script>
   
-  <!-- Import camera script file -->
+  <!-- Import camera script file  -->
   <script src="camera.js" type="module"></script>
+ 
+  <!-- Import gps functionality script file -->
+  <script src="local.js" type="module"></script>
   
   <!-- Link to style sheet -->
   <link rel="stylesheet" href="style.css">
   
   </head>
   <body>
-  
+  <!-- Link to style sheet 
   <form name="buttonForm">
   <p><button name = "clickable" value = "train"> train model </button></p>
   <p><button name = "clickable" value = "example"> example </button></p>
   <p><button name = "clickable" value = "visualization"> visualization</button></p>
   </form>
-  
+  -->
+
+  <!--
   <canvas id = "myCanvas" width = "25" height = "25">  </canvas>
   
+   -->
   <main id = "camera">
   
   <canvas id = "cam-in"></canvas>
@@ -43,9 +49,9 @@
   <button id = "capture">Capture Image</button>
   
   </main>
- 
-
-  Result: <output id = "result"> </output>
+  
+  <p id = "location"> </p>
+  <!--result:<output id = "result"> </output> -->
   
   </body>
 </html>

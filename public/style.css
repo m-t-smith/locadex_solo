@@ -5,36 +5,49 @@ html, body{
   width: 100%;
 }
 #camera, #cam-view, #cam-in, #cam-out{
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
+
 #cam-view, #cam-in, #cam-out{
-    transform: scaleX(-1);
-    filter: FlipH;
+  transform: scaleX(-1);
+  filter: FlipH;
 }
 #capture{
-    width: 200px;
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    border-radius: 30px;
-    border: none;
-    padding: 15px 20px;
-    text-align: center;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    position: fixed;
-    bottom: 30px;
-    left: calc(50% - 100px);
+  width: 200px;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  border-radius: 30px;
+  border: none;
+  padding: 15px 5px;
+  text-align: center;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+  position: fixed;
+  bottom: 30px;
+  left: calc(50% - 100px);
+}
+#location{
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  border: none;
+  padding: 10px 5px;
+  text-align: center;
+  position: fixed;
+  top: 10px;
+  left: 0px;
 }
 .taken{
-    height: 100px!important;
-    width: 100px!important;
-    transition: all 0.5s ease-in;
-    border: solid 3px white;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-    top: 20px;
-    right: 20px;
-    z-index: 2;
+  height: 100px!important;
+  width: 100px!important;
+  transition: all 0.5s ease-in;
+  border: solid 3px white;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+  top: calc(50% - 50px);
+  right: calc(50% - 50px);
+  z-index: 2;
 }
