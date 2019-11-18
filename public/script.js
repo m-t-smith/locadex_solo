@@ -48,9 +48,9 @@ async function displaySingle(data) {
   
   await tf.browser.toPixels(imageTensor, canvas);
   
-  return example;
+  imageTensor.dispose();
   
-  //imageTensor.dispose();
+  return example;
 }
 
 //load data, create and train model

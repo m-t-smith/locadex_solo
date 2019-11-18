@@ -29,7 +29,7 @@ function locate() {
   }
 
   function loc_error() { 
-    current_loc.textContent = "localization error: turn on location services and reload page";
+    current_loc.textContent = "localization error: turn on location services and reload";
   }
   
   function loc_success(position) {

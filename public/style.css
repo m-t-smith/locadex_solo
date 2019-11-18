@@ -11,24 +11,40 @@ html, body{
   object-fit: cover;
 }
 
-#cam-view, #cam-in, #cam-out{
-  transform: scaleX(-1);
-  filter: FlipH;
-}
-#capture{
-  width: 200px;
+/* mirror image, useful when facingMode set to 'user' */
+/* #cam-view, #cam-in, #cam-out{ */
+  /* transform: scaleX(-1); */
+  /* filter: FlipH; */
+/* } */
+
+#identify{
+  width: 100px;
   background-color: black;
   color: white;
   font-size: 14px;
-  border-radius: 30px;
+  border-radius: 20px;
   border: none;
-  padding: 15px 5px;
+  padding: 14px 7px;
   text-align: center;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
   position: fixed;
   bottom: 30px;
-  left: calc(50% - 100px);
+  left: calc(28% - 50px);
 }
+#observe{
+  width: 100px;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  border-radius: 20px;
+  border: none;
+  padding: 14px 7px;
+  text-align: center;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+  position: fixed;
+  bottom: 30px;
+  left: calc(72% - 50px);
+} 
 #location{
   width: 100%;
   background-color: black;
@@ -38,7 +54,7 @@ html, body{
   padding: 10px 5px;
   text-align: center;
   position: fixed;
-  top: 10px;
+  top: 0px;
   left: 0px;
 }
 .taken{
@@ -47,7 +63,7 @@ html, body{
   transition: all 0.5s ease-in;
   border: solid 3px white;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-  top: calc(50% - 50px);
-  right: calc(50% - 50px);
+  top: 60px;
+  right: 30px;
   z-index: 2;
 }

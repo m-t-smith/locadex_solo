@@ -15,9 +15,9 @@
   <!-- Import the data file -->
   <script src="data.js" type="module"></script>
 
-  <!-- Import the main app script file -->
+  <!-- Import the main app script file 
   <script src="script.js" type="module"></script>
-  
+  -->
   <!-- Import camera script file  -->
   <script src="camera.js" type="module"></script>
  
@@ -43,10 +43,17 @@
    -->
   <main id = "camera">
   
+  <!-- device camera input receiver -->
   <canvas id = "cam-in"></canvas>
+  <!-- video stream from device camera --> 
   <video id = "cam-view" autoplay playsinline></video>
-  <img src = "//:0" alt = "" id = "cam-out">
-  <button id = "capture">Capture Image</button>
+  <!-- image(s) captured during observation and identification -->
+  <img id = "cam-out" src = "//:0" alt = "">
+  <!-- UI element which captures single image for recognition task-->
+  <button id = "identify">Identify</button>
+  <!-- UI element which captures multiple images for NN training-->
+  <button id = "observe">Observe</button>
+  <!-- -->
   
   </main>
   
