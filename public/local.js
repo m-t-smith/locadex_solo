@@ -1,21 +1,9 @@
 
 //check if geologocation is possible
 
-function locate() {
+var localizer = (function() {
   
   const current_loc = document.querySelector('#location');
-  
-  if(navigator.geolocation){
-    
-    current_loc.textContent = "Processing...";
-    
-    var watchID = navigator.geolocation.watchPosition(
-                                          loc_success,
-                                          loc_error,
-                                          loc_options);
-  } else {
-    console.log("Geolocation is not available");
-  }
 
   var loc_options = { 
     enableHighAccuracy: true,
@@ -39,8 +27,36 @@ function locate() {
     const loc = `Latitude: ${lat} , Longitude: ${lng}`;
     displayPos(loc);
   }
+  
+  function locate() {
+    var watchID = navigator.geolocation.watchPosition(
+                                            loc_success,
+                                            loc_error,
+                                            loc_options);
+  }
+  
+  function updateLocation(){
+  
+    if(navigator.geolocation){
+      
+      current_loc.textContent = "Processing...";
+      
+      locate();
+      
+    } else {
+      console.log("Geolocation is not available");
+    }
+    
+  }
 
-}
+  return {
+    
+    updateLocation: updateLocation
+    
+  };
+    
+    
+}());
 
-locate();
+export { localizer };
   

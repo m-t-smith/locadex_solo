@@ -16,13 +16,17 @@
   <script src="data.js" type="module"></script>
 
   <!-- Import the main app script file 
-  <script src="script.js" type="module"></script>
+  <script src="mlModel.js" type="module"></script>
   -->
-  <!-- Import camera script file  -->
-  <script src="camera.js" type="module"></script>
+  <!-- Import camera script file  
+  (moved import to init file, don't need this here anymore
+  <script src="camera.js" type="module"></script> -->
  
-  <!-- Import gps functionality script file -->
-  <script src="local.js" type="module"></script>
+  <!-- Import gps functionality script file 
+  <script src="local.js" type="module"></script> -->
+  
+  <!-- Import inittlization script file -->
+  <<script src= "init.js" type="module"></script>
   
   <!-- Link to style sheet -->
   <link rel="stylesheet" href="style.css">
@@ -42,13 +46,20 @@
   
    -->
   <main id = "camera">
-  
-  <!-- device camera input receiver -->
+    
+  <!-- canvas where we draw images captured from stream -->
   <canvas id = "cam-in"></canvas>
   <!-- video stream from device camera --> 
   <video id = "cam-view" autoplay playsinline></video>
   <!-- image(s) captured during observation and identification -->
   <img id = "cam-out" src = "//:0" alt = "">
+  
+    <!-- transform captured images for dataset building -->
+  <!-- <canvas id = "sample-in"></canvas> -->
+  <img id = "sample-view" src = "//:0" alt = "">
+  <!-- <img id = "sample-out" src = "//:0" alt = ""> -->
+  
+  
   <!-- UI element which captures single image for recognition task-->
   <button id = "identify">Identify</button>
   <!-- UI element which captures multiple images for NN training-->
