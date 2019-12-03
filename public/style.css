@@ -5,12 +5,20 @@ html, body{
   width: 100%;
   background-color: grey;
 }
+
+#container {
+  position: absolute;
+  height: 75%;
+  width: 100%;
+  bottom: 26%;
+}
+
 #camera, #cam-view, #cam-in, #cam-out{
   /* filter: grey; */
   /* -webkit-filter: grayscale(1); */
   /* filter: grayscale(1); */
-  position: fixed;
-  height: 70%;
+  position: absolute;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
@@ -32,10 +40,11 @@ html, body{
   padding: 14px 7px;
   text-align: center;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-  position: fixed;
-  bottom: 160px;
+  position: absolute;
+  bottom: 7%;
   left: calc(28% - 50px);
 }
+
 #observe{
   width: 100px;
   background-color: black;
@@ -47,8 +56,8 @@ html, body{
   padding: 14px 7px;
   text-align: center;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-  position: fixed;
-  bottom: 160px;
+  position: absolute;
+  bottom: 7%;
   left: calc(72% - 50px);
 } 
 
@@ -73,15 +82,15 @@ html, body{
   padding: 10px 5px;
   text-align: center;
   position: fixed;
-  top: 0px;
+  top: 0%;
   left: 0px;
 }
 
-#info-view {
+#info-view{
   width: 100%;
   width: 100vw;
   background-color: black;
-  height: 25%;
+  height: 100%;
   color: white;
   font-size: 16px;
   padding: 0px 50px 5px 20px;
@@ -89,6 +98,7 @@ html, body{
   position: fixed;
   bottom: 0px;
   z-index: 3;
+  transition: height 300ms;
   overflow-x: hidden;
   overflow-y: auto;
   
@@ -99,11 +109,16 @@ html, body{
 	/* transition: all 1000ms ease; */
 }
 
+#info-view.small {
+  height: 25%;
+}
+
 #data-categories {
+  display: inline;
   list-style-type: none;
   width: 100%;
   padding: 0px;
-  margin: 0px:
+  margin: 0px;
 }
 
 #data-categories li {
@@ -111,7 +126,6 @@ html, body{
   padding-right: 3px;
   padding-left: 3px;
   border-right: 1px solid white;
-  /* border-left: 1px solid white; */
 }
 
 #data-categories li:first-child {
@@ -119,8 +133,36 @@ html, body{
 }
 
 #info-out {
-padding-right: 30px;
+  padding-right: 30px;
 }
+
+.info-header {
+  width: 90%;
+}
+
+.info-header h3 {
+  margin-top: 5px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+#display-toggle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-top: 8px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 0px;
+  border-top: 20px solid white;
+  float: right;
+}
+
+#display-toggle.up {
+  border-bottom: 20px solid white;
+  border-top: 0px;
+}
+
 
 .taken{
   height: 100px!important;
@@ -128,10 +170,11 @@ padding-right: 30px;
   transition: all 0.5s ease-in;
   border: solid 3px white;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-  top: 60px;
-  right: 30px;
+  top: 10%;
+  right: 4%;
   z-index: 2;
 }
+
 
 /* Work in progress below */
 

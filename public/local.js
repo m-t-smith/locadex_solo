@@ -8,7 +8,7 @@ var localizer = (function() {
   var loc_options = { 
     enableHighAccuracy: true,
     maximumAge        : 20000,
-    timeout           : 30000
+    timeout           : 50000
   };
 
   

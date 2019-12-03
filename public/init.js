@@ -1,6 +1,7 @@
 
 import { myCamera as cam } from './camera.js'
 import { localizer as loc } from './local.js'
+import { scribe } from './infoViewController.js'
 
 var init = (function() {
   
