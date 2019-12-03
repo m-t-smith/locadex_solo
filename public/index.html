@@ -63,19 +63,26 @@
   <!-- UI element which captures single image for recognition task-->
   <button id = "identify">Identify</button>
   <!-- UI element which captures multiple images for NN training-->
-  <button id = "observe" data-toggle="offCanvas">Observe</button>
+  <button id = "observe">Observe</button>
   <!-- -->
   
- 
-  <!-- <div id = "info-view"> -->
-    <!-- <div id = "container"> -->
-      <!-- <ul class="column"> -->
-        <!-- <li>Info</li> -->
-      <!-- </ul> -->
-    <!-- </div> -->
-  <!-- </div> -->
-  
   </main>
+ 
+  <div id = "info-view">
+    <!-- <header id = "test"> test2 </p> -->
+    <header id = "identity-label" val = ""> 
+      <h3> Name </h3>
+    </header>
+    <ul id="data-categories">
+        <li id = "ex-li-1">Category 1</li>
+        <li id = "ex-li-2">Category 2</li>
+    </ul>
+    <article id = "info-out" val= "">
+      <p id = "text" textContent = ""> Capture an image by clicking
+    the Identify button and relevant information will appear here.
+    Click on the category labels above to learn more </p>
+    </article>
+  </div>
   
   <p id = "location"> </p>
   <!--result:<output id = "result"> </output> -->
