@@ -71,14 +71,7 @@ html, body{
   right: 30px;
   z-index: 2;
 }
-/* #sample-in { */
-  /* position: absolute; */
-  /* height: 28px!important; */
-  /* width: 28px!important; */
-  /* top: 160px; */
-  /* right: 30px; */
-  /* /* z-index: 2; */ 
-/* } */
+
 .taken{
   height: 100px!important;
   width: 100px!important;
@@ -89,3 +82,48 @@ html, body{
   right: 30px;
   z-index: 2;
 }
+
+/* Work in progress below */
+
+/* #sample-in { */
+  /* position: absolute; */
+  /* height: 28px!important; */
+  /* width: 28px!important; */
+  /* top: 160px; */
+  /* right: 30px; */
+  /* /* z-index: 2; */ 
+/* } */
+
+/* #info-view { */
+  /* width: 100% */
+  /* height: 30%; */
+  /* position: fixed; */
+  /* bottom: 60px; */
+  /* z-index: 10; */
+  /* background: white; */
+  /* -webkit-transition: all 1000ms ease; */
+	/* -moz-transition: all 1000ms ease; */
+  /* -ms-transition: all 1000ms ease; */
+  /* -o-transition: all 1000ms ease; */
+	/* transition: all 1000ms ease; */
+/* } */
+/* #info-view: hover { */
+  /* bottom: 0px; */
+  /* -webkit-transition: all 1000ms ease; */
+	/* -moz-transition: all 1000ms ease; */
+  /* -ms-transition: all 1000ms ease; */
+  /* -o-transition: all 1000ms ease; */
+  /* transition: all 1000ms ease; */
+/* } */
+/* #container { */
+/* position:relative; */
+/* width:900px; */
+/* margin-left:auto; */
+/* margin-right: auto; */
+/* } */
+/* #container ul { */
+/* width:290px; */
+/* float:left; */
+/* color:FFF; */
+/* } */
+
