@@ -61,16 +61,25 @@ html, body{
   left: calc(72% - 50px);
 } 
 
-#sample-view, #sample-in, #sample-out{
+#sample-view, #sample-in {
   position: absolute;
-  filter: grey;
-  -webkit-filter: grayscale(1);
-  filter: grayscale(1);
+  /* filter: grey!important; */
+  /* -webkit-filter: grayscale(1)!important; */
+  /* filter: grayscale(1)!important; */
   height: 28px!important;
   width: 28px!important;
-  top: 160px;
+  top: 45%;
   right: 30px;
-  z-index: 2;
+  z-index: 3;
+}
+
+#sample-out {
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  top: 55%;
+  right: 30px;
+  z-index:3;
 }
 
 #location{
@@ -169,7 +178,7 @@ html, body{
   transition: all 0.5s ease-in;
   border: solid 3px white;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-  top: 10%;
+  top: 15%;
   right: 4%;
   z-index: 2;
 }

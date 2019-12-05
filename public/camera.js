@@ -16,57 +16,22 @@ var myCamera = (function() {
         cameraSensor = document.querySelector("#cam-in"),
         idButton = document.querySelector("#identify"),
         obButton = document.querySelector("#observe"),
-        sample = document.querySelector("#sample-view"),
-        sampleCanvas = document.querySelector("sample-in"),
-        sampleOut = document.querySelector("sample-out")
+        sampleView = document.querySelector("#sample-view"),
+        // sampleCanvas = document.querySelector("#sample-in"),
+        sampleOut = document.querySelector("#sample-out")
       
   // Access device camera and stream to cam-view element
   function cameraStart() {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(function(stream) {
-      let track = stream.getTracks()[0];
+      //let track = stream.getTracks()[0];
       cameraView.srcObject = stream;
     })
     .catch(function(error) {
       console.error("Error: ", error);
     });
   }
-
-  // function resize(img) {
-    // const width = 28;
-    // const scaleFactor = width / img.width; 
-  // }
-  
-  // function toGreyscale(images) {
-    // var tempCanvas = document.createElement("canvas");
-    // var tempImgEl = doc.createElement("img");
-    // var tempCtxt = tempCanvas.getContext("2d");
-    // const width = cameraSensor.width;
-    // const height = cameraSensor.height;
-    // var imgData;
-    
-    // const len = images.length - 1;
-      // for(let i = 0; i < len; i ++){
-        // tempCtxt.drawImage(images[i], 0, 0);
-        // imgData = tempCtxt.getImageData(0, 0, width, height);
-        
-        // for(let j=0; j < imgData.height; j++) {
-          // for(let k=0; k <imgData.width; k++){
-            // let indx = (j*4)*imgData.width+(j*4);
-            // let r = imgData.data[indx];
-            // let g = imgData.data[indx + 1];
-            // let b = imgData.data[indx + 2];
-            // let avg = (r+g+b)/3;
-            // imgData.data[indx] = avg;
-            // imgData.data[indx + 1] = avg;
-            // imgData.data[indx + 2] = avg;
-          // }
-        // }
-        // img[i] = tempCanvas.toDataURL("img/webp");
-      // }
-      
-  // }
 
   //draw image to cam-out from video stream 
   function toImageEl(){
@@ -75,39 +40,44 @@ var myCamera = (function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
   }
-  
-  // function getSample(){
-    // //sampleCanvas = document.createElement("canvas");
-    // sampleCanvas.width = sample.width;
-    // sampleCanvas.height = sample.height;
-    // sampleCanvas.getContext("2d").drawImage(sample, 0, 0);
-    // sampleOut.src = sampleCanvas.toDataURL("image/webp");
-    // let img = sampleOut.src;
-    // console.log(img);
-    
-    // return {
-      // img
-    // };
-  // }
 
   function capture() { 
     toImageEl();
-    sample.src = cameraOutput.src;
-    //samples.push(sample.src);
-    samples.push(cameraOutput.src);
+    //reduce image size via css for faster processing
+    sampleView.src = cameraOutput.src;
+    sampleView.onload = () => {
+      //only take one channel for greyscale
+      const tensor = tf.browser.fromPixels(sampleView, 1);
+       samples.push(tensor);
+      tf.browser.toPixels(tensor, sampleOut);
+      
+    }
     cameraOutput.classList.add("taken");
+    //tensor.dispose();
   }
   
   // Take single picture on identify button click
   idButton.onclick = function() {
     toImageEl();
-    sample.src = cameraOutput.src;
+    //reduce image size via css for faster processing
+    sampleView.src = cameraOutput.src;
+    sampleView.onload = () => {
+      //only take one channel for greyscale
+      const tensor = tf.browser.fromPixels(sampleView, 1);
+      samples.push(tensor);
+      tf.browser.toPixels(tensor, sampleOut);
+      console.log("sampled image tensor info: ");
+      tensor.print(true);
+      
+    }
     cameraOutput.classList.add("taken");
     console.log("image captured");
   };
   
   function check() {
-    console.log(samples[0]);
+    const sam = samples[0];
+    console.log(sam.shape);
+    sam.print();
     console.log("number of samples taken: " + samples.length);
   }
   

@@ -69,12 +69,12 @@ var scribe = (function () {
     }
   }
   
-  obButton.onclick = function () {
-    out.textContent = "Enter details about the subject of observation below";
-    clearList(list);
-    addCategory(form, 1, "Subject Name (required)");
-    addCategory(form, 2);
-  }
+  // obButton.onclick = function () {
+    // out.textContent = "Enter details about the subject of observation below";
+    // clearList(list);
+    // addCategory(form, 1, "Subject Name (required)");
+    // addCategory(form, 2);
+  // }
   
   toggle.onclick = function () {
    // window.addEventListener('DOMContentLoaded', (event) => {

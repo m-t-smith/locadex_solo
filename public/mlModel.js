@@ -1,4 +1,5 @@
-console.log("hello tensorflow");
+//neural network model for hand written digits
+//identification demo (idDemo)
 
 import {MnistData} from './data.js';
 
