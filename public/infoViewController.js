@@ -8,6 +8,8 @@ var scribe = (function () {
         view = document.querySelector("#info-view"),
         out = document.querySelector("#text"),
         list = document.querySelector("#data-categories"),
+        obButton = document.querySelector("#observe"),
+        form = document.querySelector("#info-in"),
         defCatTit1 = "User Guide",
         defCatTit2 = "Developers",
         defCatInfo1 = `Capture an image by clicking
@@ -44,8 +46,34 @@ var scribe = (function () {
     }
   }
   
-  function listEventHandler(indx) {
-    
+  function addCategory(myForm, num, prompt) {
+    for(let i = 0; i < num; i++){
+      var catTitleBox = document.createElement("input");
+      var catDataBox = document.createElement("textarea");
+      if (prompt == null) {
+        catTitleBox.placeholder = "Category Title";
+      } else {
+        catTitleBox.placeholder = prompt;
+      }
+      catDataBox.placeholder = "Category Data";
+      catTitleBox.className = "catTitle";
+      catDataBox.className = "catData";
+      myForm.appendChild(catTitleBox);
+      myForm.appendChild(catDataBox);
+    }
+  }
+  
+  function clearList(myList){
+    while(myList.firstChild) {
+      myList.removeChild(myList.firstChild);
+    }
+  }
+  
+  obButton.onclick = function () {
+    out.textContent = "Enter details about the subject of observation below";
+    clearList(list);
+    addCategory(form, 1, "Subject Name (required)");
+    addCategory(form, 2);
   }
   
   toggle.onclick = function () {

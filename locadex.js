@@ -20,22 +20,11 @@ const locadex = express();
 locadex.use(express.static('public'));
 
 
-//locadex.use('/resources', express.static(path.join(__dirname, '/resources')));
-
-//locadex.use('/test', express.static(path.join(__dirname, '/test')));
-
-// locadex.get('/', function(req, res) {
-
-// res.end('Hello World\n')
-
-// });
-
-//secure server creation
-
-//locadex.listen(8000)
-
+//school 152.13.44.125
+//home 192.168.1.113
 https.createServer(options, locadex).listen(8000, "192.168.1.113");
 console.log("server running");
+
  // ).listen(port, function(){
   // console.log(`Server running at https://${hostname}:${port}/`);
 // })

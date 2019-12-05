@@ -163,7 +163,6 @@ html, body{
   border-top: 0px;
 }
 
-
 .taken{
   height: 100px!important;
   width: 100px!important;
@@ -173,6 +172,21 @@ html, body{
   top: 10%;
   right: 4%;
   z-index: 2;
+}
+
+.form {
+  display: block;
+  width: 90%;
+  margin-left: 2%;
+}
+.catTitle {
+  display: block;
+  width: 25%;
+}
+.catData {
+  height: 70px;
+  width: 97%;
+  margin-left: 1%;
 }
 
 

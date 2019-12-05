@@ -15,7 +15,7 @@
   <!-- Import the data file -->
   <script src="data.js" type="module"></script>
 
-  <!-- Import the main app script file 
+  <!-- Import the machine learning model script file 
   <script src="mlModel.js" type="module"></script>
   -->
   <!-- Import camera script file  
@@ -74,15 +74,14 @@
       <h3> Locadex </h3>
       <div id = "display-toggle" class = "up"></div>
     </header>
-    <ul id="data-categories">
-        <!-- <li id = "cat1">User Guide</li> -->
-        <!-- <li id = "cat2">Developers</li> -->
-    </ul>
+    <ul id="data-categories"></ul>
     <article id = "info-out" val= "">
-      <p id = "text" textContent = ""> Capture an image by clicking
-    the Identify button and relevant information will appear here.
-    Click on the category labels above to learn more </p>
+      <p id = "text" textContent = ""> Welcome to Locadex! 
+      Click on the User Guide link above for usage instructions</p>
     </article>
+    
+    <div id = "info-in" class = "form"></div>
+
   </div>
   
   <p id = "location"> </p>
