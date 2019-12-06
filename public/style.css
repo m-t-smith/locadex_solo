@@ -68,6 +68,7 @@ html, body{
   /* filter: grayscale(1)!important; */
   height: 28px!important;
   width: 28px!important;
+  /* filter: invert(1); */
   top: 45%;
   right: 30px;
   z-index: 3;
@@ -198,25 +199,5 @@ html, body{
   margin-left: 1%;
 }
 
-
-/* Work in progress below */
-
-/* #sample-in { */
-  /* position: absolute; */
-  /* height: 28px!important; */
-  /* width: 28px!important; */
-  /* top: 160px; */
-  /* right: 30px; */
-  /* /* z-index: 2; */ 
-/* } */
-
-/* #info-view: hover { */
-  /* bottom: 0px; */
-  /* -webkit-transition: all 1000ms ease; */
-	/* -moz-transition: all 1000ms ease; */
-  /* -ms-transition: all 1000ms ease; */
-  /* -o-transition: all 1000ms ease; */
-  /* transition: all 1000ms ease; */
-/* } */
 
 

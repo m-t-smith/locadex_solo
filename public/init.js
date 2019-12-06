@@ -1,24 +1,31 @@
 
 import { myCamera as cam } from './camera.js'
 import { localizer as loc } from './local.js'
+import { identifier  as id} from './identifier.js'
 import { scribe } from './infoViewController.js'
-import * as hwdData from './data.js'
+
 
 var init = (function() {
   
-  var idDemo = true;
+  //control flags determine execution path on startup
+  var mlDemo = false; //trains and saves example model
+  var hwdDemo = true; //loads example data
   
-  function initilize() {    
+  function startApp() {    
     cam.cameraStart();
     loc.updateLocation();
+    id.mode = mlDemo;
+    scribe.mode = hwdDemo;
+    id.init();
+    scribe.init();
   }
   
   return {
     
-    ilize: initilize
+    startApp: startApp
   
   };
   
 }());
 
-window.addEventListener("load", init.ilize, false);
+window.addEventListener("load", init.startApp, false);

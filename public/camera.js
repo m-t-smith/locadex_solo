@@ -1,10 +1,11 @@
 //camera script file (credit to Aaron Benjamin for the helpful tutorial:
 // https://blog.prototypr.io/make-a-camera-web-app-tutorial-part-1-ec284af8dddf)
 
-// constraints for video stream, facingmode either user or environment
+import { identifier as id} from './identifier.js'
+// import { scribe } from './infoViewController.js' 
 
 var myCamera = (function() {
-
+// constraints for video stream, facingmode either user or environment
   var constraints = { video: { facingMode: "environment" }, audio: false };
   
   //declare array to store captured images on observation button click event
@@ -56,23 +57,24 @@ var myCamera = (function() {
     //tensor.dispose();
   }
   
-  // Take single picture on identify button click
-  idButton.onclick = function() {
-    toImageEl();
-    //reduce image size via css for faster processing
-    sampleView.src = cameraOutput.src;
-    sampleView.onload = () => {
-      //only take one channel for greyscale
-      const tensor = tf.browser.fromPixels(sampleView, 1);
-      samples.push(tensor);
-      tf.browser.toPixels(tensor, sampleOut);
-      console.log("sampled image tensor info: ");
-      tensor.print(true);
-      
-    }
-    cameraOutput.classList.add("taken");
-    console.log("image captured");
-  };
+  // function setSample(arr, imgSrc, callback, callbackObj){
+    // //reduce image size via css for faster processing
+    // sampleView.src = imgSrc;
+    // sampleView.onload = () => {
+      // //only take one channel for greyscale
+      // const tensor = tf.browser.fromPixels(sampleView, 1);
+      // samples.push(tensor);
+      // //display greyscale
+      // tf.browser.toPixels(tensor, sampleOut);
+      // //send img tensor to subjectData
+      // //object (declared in identifier module)
+      // console.log("tensor in setSample: ", tensor);
+      // callback.apply(callbackObj, samples);
+    // }
+  // }
+    //call for the above
+    // setSample(samples, cameraOutput.src,
+    // id.subjectData.setImgTensor, id.subjectData);
   
   function check() {
     const sam = samples[0];
@@ -80,6 +82,37 @@ var myCamera = (function() {
     sam.print();
     console.log("number of samples taken: " + samples.length);
   }
+  
+  // Take single picture on identify button click
+  idButton.onclick = function() {
+    toImageEl();
+    cameraOutput.classList.add("taken");
+    
+    let promise = new Promise(
+      (resolve, reject) => {
+        sampleView.src = cameraOutput.src;
+        sampleView.onload = () => {
+          //only take one channel for greyscale
+          const tensor = tf.browser.fromPixels(sampleView, 1);
+          samples.push(tensor);
+          //display greyscale
+          tf.browser.toPixels(tensor, sampleOut);
+          if(tensor){
+            console.log("working");
+            resolve(tensor);
+          } else {
+            reject(Error("you're an asynchole"));
+          }
+        }
+      });
+      
+    promise.then(function(promisedTensor, broken){
+      id.identify(promisedTensor);
+    }).catch(function(broken) {
+      console.log("Failure: ", broken);
+    })
+    
+  };
   
   // Take multiple pictures on observe button click
   obButton.onclick = function() { 
@@ -93,7 +126,8 @@ var myCamera = (function() {
 
   return {
     
-    cameraStart: cameraStart
+    cameraStart: cameraStart,
+    samples: samples
     
   };
 
