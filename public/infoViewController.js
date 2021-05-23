@@ -40,8 +40,6 @@ var scribe = (function () {
     populate(textOps, subOps);
     toList(cats, catInfo);
     textOps.guide = false;
-    empty(cats);
-    empty(catInfo);
     
     textOps.demo = isDemo;
     populate(textOps);

@@ -20,7 +20,7 @@ const locadex = express();
 locadex.use(express.static('public'));
 
 
-//school 152.13.44.125
+//school 152.13.44.142
 //home 192.168.1.113
 https.createServer(options, locadex).listen(8000, "192.168.1.113");
 console.log("server running");
